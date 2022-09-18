@@ -15,9 +15,9 @@ fun SentenceAnalyzerApp(dictionaryHttp: HttpHandler): HttpHandler {
             Response(Status.OK).body(dictionary.validWordsFrom(request).size.toString())
         },
         "/calls" bind Method.GET to { Response(Status.OK).body(counter.get().toString()) },
-        "/analyze" bind Method.POST to {
+        "/analyze" bind Method.POST to { request ->
             val lens = Body.auto<Analysis>().toLens()
-            val analysis = it.bodyString().groupBy { it }.mapValues { it.value.size }
+            val analysis = request.bodyString().groupBy { it }.mapValues { it.value.size }
             Response(Status.OK).with(lens of Analysis(analysis));
         }
     )
