@@ -30,6 +30,7 @@ abstract class SentenceAnalyzerContract {
     fun `analyse a sentence`() {
         val request = Request(Method.POST, "/analyze").body("david ivan")
         val response = app(request)
-        assertThat(response, equalTo("""{ "breakdown"; { "a", 2, "d": 2, "i": 2, "n": 1, "v": 2}"}"""))
+        val expected = """{"breakdown":{"d":2,"a":2,"v":2,"i":2," ":1,"n":1}}"""
+        assertThat(response.body.toString(), equalTo(expected))
     }
 }

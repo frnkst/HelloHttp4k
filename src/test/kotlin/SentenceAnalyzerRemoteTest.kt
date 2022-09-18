@@ -10,7 +10,7 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 
 class SentenceAnalyzerRemoteTest : SentenceAnalyzerContract() {
-    private val server = SentenceAnalyzerApp().asServer(SunHttp(0))
+    private val server = SentenceAnalyzerApp(FakeDictionary()).asServer(SunHttp(0))
     override val app: HttpHandler = ClientFilters.SetBaseUriFrom(Uri.of("http://localhost:${server.port()}")).then(OkHttp())
 
     @BeforeEach
