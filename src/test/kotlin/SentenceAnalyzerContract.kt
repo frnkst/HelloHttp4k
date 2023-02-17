@@ -15,8 +15,8 @@ abstract class SentenceAnalyzerContract {
     @Test
     fun `can count words`() {
         val request = Request(Method.POST, "/count").body("the lazy lazy cat")
-        val reponse = app(request)
-        assertThat(reponse, hasStatus(Status.OK) and hasBody("4"))
+        val response = app(request)
+        assertThat(response, hasStatus(Status.OK) and hasBody("4"))
     }
 
     @Test
