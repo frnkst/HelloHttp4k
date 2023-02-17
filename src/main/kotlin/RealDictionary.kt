@@ -8,5 +8,5 @@ import org.http4k.filter.ClientFilters
 
 fun RealDictionary(): HttpHandler = { request: Request ->
     ClientFilters.SetBaseUriFrom(Uri.of("https://api.dictionaryapi.dev/api/v2/entries/en/"))
-        .then(OkHttp()) .invoke(request)
+        .then(OkHttp()).invoke(request)
 }
